@@ -1,4 +1,4 @@
-# Written by release/write-package-manifests.mjs in erden-sh/erden from release/pins/0.1.0.json, and updated
+# Written by release/write-package-manifests.mjs in erden-sh/erden from release/pins/0.2.0.json, and updated
 # by its release workflow. Do not edit by hand.
 class Erden < Formula
   desc "Check, package and publish ontologies with the Erden registry"
@@ -12,31 +12,33 @@ class Erden < Formula
 
   on_macos do
     on_arm do
-      url "https://github.com/erden-sh/erden/releases/download/v0.1.0/erden-0.1.0-darwin-arm64.tar.gz"
-      sha256 "1781313f263f6734c2808bf5b0a286f35ed946a1adfd1a0f41377ac67d40058c"
+      url "https://github.com/erden-sh/erden/releases/download/v0.2.0/erden-0.2.0-darwin-arm64.tar.xz"
+      sha256 "21da57c9c4f06f433e33f8da807af7d2309b3e06b60b87a98082105c06001f0b"
     end
   end
 
   on_linux do
     on_arm do
-      url "https://github.com/erden-sh/erden/releases/download/v0.1.0/erden-0.1.0-linux-arm64.tar.gz"
-      sha256 "9ac75830f17a05bfd248d9178148bd236abcefe1fa0764a40fde9f8ec09ad647"
+      url "https://github.com/erden-sh/erden/releases/download/v0.2.0/erden-0.2.0-linux-arm64.tar.xz"
+      sha256 "556ac7dfac1bcee71aef867523e92029252f150794554be909d8cf5a4797b01b"
     end
     on_intel do
-      url "https://github.com/erden-sh/erden/releases/download/v0.1.0/erden-0.1.0-linux-x64.tar.gz"
-      sha256 "2a794171fa7078d4df21386c498819e22867a8456709d2e9c2994ab9afb437b0"
+      url "https://github.com/erden-sh/erden/releases/download/v0.2.0/erden-0.2.0-linux-x64.tar.xz"
+      sha256 "4962876ccada2935736f8e443bf590bb3217ba1439d0d2eaaee4300737fe2a42"
     end
   end
 
   depends_on arch: :arm64 if OS.mac?
 
-  # The engines check their own SHA-256 before every run, so nothing in the archive may be rewritten.
+  # The engines check their own SHA-256 before every run, and bin/erden carries the CLI inside its Node.js, so nothing
+  # in the archive may be stripped or rewritten.
   skip_clean "libexec"
 
   def install
     libexec.install Dir["*"]
     bin.install_symlink libexec/"bin/erden", libexec/"bin/den"
-    if (libexec/"lib/dist/completions.js").exist?
+    # `erden completions` exists in every single-executable archive (no lib/dist) and in the others that ship it.
+    if !(libexec/"lib/dist").exist? || (libexec/"lib/dist/completions.js").exist?
       generate_completions_from_executable(bin/"erden", "completions")
     end
   end
