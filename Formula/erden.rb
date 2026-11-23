@@ -1,4 +1,4 @@
-# Written by release/write-package-manifests.mjs in erden-sh/erden from release/pins/0.2.0.json, and updated
+# Written by release/write-package-manifests.mjs in erden-sh/erden from release/pins/0.2.1.json, and updated
 # by its release workflow. Do not edit by hand.
 class Erden < Formula
   desc "Check, package and publish ontologies with the Erden registry"
@@ -12,19 +12,19 @@ class Erden < Formula
 
   on_macos do
     on_arm do
-      url "https://github.com/erden-sh/erden/releases/download/v0.2.0/erden-0.2.0-darwin-arm64.tar.xz"
-      sha256 "21da57c9c4f06f433e33f8da807af7d2309b3e06b60b87a98082105c06001f0b"
+      url "https://github.com/erden-sh/erden/releases/download/v0.2.1/erden-0.2.1-darwin-arm64.tar.xz"
+      sha256 "417fb56087d16ec6d5761555daa03338085bae3fd8cf5cb89dfe13e5f9a76e2d"
     end
   end
 
   on_linux do
     on_arm do
-      url "https://github.com/erden-sh/erden/releases/download/v0.2.0/erden-0.2.0-linux-arm64.tar.xz"
-      sha256 "556ac7dfac1bcee71aef867523e92029252f150794554be909d8cf5a4797b01b"
+      url "https://github.com/erden-sh/erden/releases/download/v0.2.1/erden-0.2.1-linux-arm64.tar.xz"
+      sha256 "6134dff5487e60997de208cdbc94e4723c5c713b3afa45bcd35188153689d2ee"
     end
     on_intel do
-      url "https://github.com/erden-sh/erden/releases/download/v0.2.0/erden-0.2.0-linux-x64.tar.xz"
-      sha256 "4962876ccada2935736f8e443bf590bb3217ba1439d0d2eaaee4300737fe2a42"
+      url "https://github.com/erden-sh/erden/releases/download/v0.2.1/erden-0.2.1-linux-x64.tar.xz"
+      sha256 "9b9eb15dc414f4a4800d7d9998ab31d9d789c96db5b48fb780738031855aa136"
     end
   end
 
